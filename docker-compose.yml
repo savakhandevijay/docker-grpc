@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+    unified:
+        container_name: php-fpm
+        build:
+            context: ./docker/php
+            dockerfile: dockerfile
+        working_dir: /var/www/www/members
+        volumes:
+            - ./src/memberservice:/var/www
+            - ./logs:/var/log
+        environment:
+            - SMTP_HOST=${SMTP_HOST}
+            - SMTP_PORT=${SMTP_PORT}
+        ports:
+            - ${GRPC_PORT}:9000
+        expose:
+            - 9000
+        networks:
+            unified:
+                ipv4_address: 10.5.0.5
+networks:
+    unified:
+        driver: bridge
+        name: unified
+        ipam:
+            config:
+                - subnet: 10.5.0.0/16
+                  gateway: 10.5.0.1

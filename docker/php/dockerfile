@@ -1,0 +1,37 @@
+FROM ghcr.io/roadrunner-server/roadrunner:2024.1.1 AS roadrunner
+FROM php:8.2.18-fpm-alpine3.19
+
+ARG SMTP_HOST='10.204.3.99' SMTP_PORT='1025'
+
+# add edge main repository link to add various package
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
+
+# add cli tools
+RUN apk update && apk upgrade --no-cache ${PHPIZE_DEPS} \
+    && apk add --update linux-headers gcc make autoconf \
+    && apk add --no-cache libc-dev musl xz-libs zlib php-pear g++ \
+    && apk add --no-cache go pkgconf libxml2-dev libssl3 libmemcached-dev libssh2
+
+# install pecl extension
+RUN pecl install memcached xdebug grpc apcu opentelemetry msgpack igbinary \
+    && docker-php-ext-install bcmath soap opcache pdo_mysql sockets \
+    && docker-php-ext-enable xdebug grpc memcached apcu opentelemetry msgpack igbinary
+
+# install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
+
+COPY ./configs/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY ./configs/error_reporting.ini /usr/local/etc/php/conf.d/error_reporting.ini
+COPY ./www.conf /usr/local/etc/php-fpm.d/www.conf
+
+# install mailhog    
+RUN go install github.com/mailhog/mhsendmail@latest \
+    && cp /root/go/bin/mhsendmail /usr/bin/mhsendmail \
+    && echo 'sendmail_path="/usr/bin/mhsendmail --smtp-addr=${SMTP_HOST}:${SMTP_PORT} --from=noreply@mailhog.local"' > /usr/local/etc/php/conf.d/sendmail.ini
+
+# Clean up
+RUN apk cache -v sync
+
+# Run the roadrunner, Roadrunner connect to 9000 port, and bydefault php-fpm runs on 9000 port which blocks roadrunners to run on 9000 port
+CMD rr serve -c /var/www/www/members/environments/dev/config/cex/grpc/.rr-uk.yaml
