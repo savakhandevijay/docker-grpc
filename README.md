@@ -5,6 +5,7 @@
 - Added static ip address to docker images, you can change as per your requirement
 - when docker image build successfully, Roadrunner serve with `environments/dev/config/cex/grpc/.rr-uk.yaml` config file, which point to UK territory
 - `/var/log` server folder is mapped with local `logs` folder, which help to trace and map all the server logs to this directory eg, wss, roadrunners, php all logs written here
+- run `docker-compose up -d --build` to build the image
 
 # How to run GRPC
 - copy grpc folder from repo, place it outside repo eg. desktop or download
