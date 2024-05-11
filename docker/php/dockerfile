@@ -10,12 +10,12 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositori
 RUN apk update && apk upgrade --no-cache ${PHPIZE_DEPS} \
     && apk add --update linux-headers gcc make autoconf \
     && apk add --no-cache libc-dev musl xz-libs zlib php-pear g++ \
-    && apk add --no-cache go pkgconf libxml2-dev libssl3 libmemcached-dev libssh2
+    && apk add --no-cache go pkgconf libxml2-dev libssl3 libmemcached-dev libssh2-dev libssh2
 
 # install pecl extension
-RUN pecl install memcached xdebug grpc apcu opentelemetry msgpack igbinary \
+RUN pecl install memcached xdebug grpc apcu opentelemetry ssh2 msgpack igbinary \
     && docker-php-ext-install bcmath soap opcache pdo_mysql sockets \
-    && docker-php-ext-enable xdebug grpc memcached apcu opentelemetry msgpack igbinary
+    && docker-php-ext-enable xdebug grpc memcached apcu opentelemetry ssh2 msgpack igbinary
 
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
