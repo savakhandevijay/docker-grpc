@@ -110,3 +110,70 @@ During the development of this stack, we encountered and solved several common D
 - **Symptom:** The FPM client throws this DNS resolution error when requesting data.
 - **Cause:** The HAProxy container shut down (likely because server-rr crashed during troubleshooting in a previous step), removing haproxy from Docker's internal DNS registry.
 - **Fix:** Ran docker-compose up -d to tell Docker to bring all missing and stopped containers back online.
+
+---
+
+## 🎯 Key Learning Steps (The Master Roadmap)
+
+### Step 1: Contract-First Mindset
+- What you learned: Everything begins with .proto files—not controller endpoints.
+- Key Takeaway: The schema is the single source of truth for all clients and servers across any programming language
+
+### Step 2: Understanding Transports & Process Lifecycles
+- What you learned: gRPC relies on long-lived, multiplexed HTTP/2 connections. Standard request-response models (like PHP-FPM) cannot serve gRPC directly.
+
+- Key Takeaway: You must separate the application worker (long-running PHP process via RoadRunner) from the HTTP/2 network daemon, and use gRPC-aware L7 load balancers like HAProxy (proto h2) or Envoy.
+
+### Step 3: Mastering Code Generation & Namespaces
+- What you learned: Auto-generated code includes binary serializer classes (UserRequest), server interfaces (UserServiceInterface), and hidden schema metadata (GPBMetadata).
+
+- Key Takeaway: Your build toolchain (Composer, npm, Maven) must be explicitly configured to autoload and register these generated namespaces.
+
+### Step 4: Metadata over HTTP Headers
+- What you learned: gRPC decouples business data (which lives inside .proto messages) from transport metadata (which lives inside the ContextInterface).
+
+- Key Takeaway: Auth tokens, tracing IDs, and request parameters like client IDs belong in $ctx metadata, not in the request payload.
+
+### Step 5: Canonical Error Handling
+- What you learned: gRPC network transfers return HTTP 200 OK, but application-level outcomes are communicated using 16 canonical gRPC status codes (UNAUTHENTICATED, NOT_FOUND, INVALID_ARGUMENT, etc.).
+
+- Key Takeaway: Throwing explicit gRPC status exceptions allows heterogeneous client services (Go, Python, Java) to inspect errors seamlessly without parsing custom JSON error payloads.
+
+---
+
+## 💡 Production Tips & Tricks
+
+### 1. Schema Management & Backward Compatibility
+Never reuse or renumber field tags: In .proto files, field numbers (e.g., string name = 2;) represent the field's identity in binary bytes. If you remove a field, mark it as reserved so no developer reuses that tag later:
+    ```
+    message UserResponse {
+        reserved 2, 5 to 8; // Preserves tags so old binary messages don't corrupt
+        reserved "old_field_name";
+    }
+    ```
+Use `buf` in CI/CD: As your project grows, use Buf to lint .proto files and automatically check for breaking schema changes before merging pull requests.
+
+### 2. Toolchain & Local Developer Experience (DX)
+Containerize your compilation: As we saw with ARM64 vs AMD64 issues, installing protoc directly on developer machines leads to "works on my machine" bugs. Keep a lightweight Alpine build task or Docker step in your repository to compile .proto files identically for all team members.
+
+Leverage RoadRunner Debug Mode for DX: Use pool: debug: true in .rr.yaml during local development to hot-reload PHP workers, but always turn it off in production to benefit from persistent in-memory worker speeds.
+
+### 3.Resilience: Deadlines & Cascading Failures
+Always set Deadlines (Timeouts): Never make an unbounded gRPC call. Downstream service outages can exhaust your client's thread/connection pool.
+    ```
+    PHP
+    // Client-side deadline (e.g., timeout after 1.5 seconds)
+    $deadline = (int)(microtime(true) * 1000000) + 1500000;
+    $client->GetUser($request, $metadata, ['timeout' => $deadline])->wait();
+    ```
+Propagate Context Deadlines: If Service A calls Service B, which calls Service C, forward the remaining context deadline down the chain so downstream services abandon work if the client has already timed out.
+
+### 4.Load Balancing & Networking
+Layer 4 vs Layer 7 Load Balancing: Traditional TCP (Layer 4) load balancers fail with gRPC because HTTP/2 opens a single persistent connection and reuses it for thousands of calls. All traffic ends up pinned to one server instance.
+
+The Solution: Always use an HTTP/2-aware Layer 7 proxy (HAProxy with proto h2, Envoy, or Traefik) that inspects individual gRPC frames and distributes them round-robin across worker instances.
+
+### 5. Metadata Conventions
+Keys MUST be lowercase: gRPC forces metadata keys to lower-case (following the HTTP/2 specification). Use kebab-case for custom headers (e.g., x-correlation-id, authorization).
+
+Binary Metadata: If you need to send raw binary data in metadata (like an encrypted token), suffix the key name with -bin (e.g., trace-token-bin). gRPC will automatically base64-encode and decode it for you.
