@@ -1,29 +1,34 @@
-version: "3.8"
 services:
-    unified:
-        container_name: php-fpm
-        build:
-            context: ./docker/php
-            dockerfile: dockerfile
-        working_dir: /var/www/www/members
-        volumes:
-            - ./src/memberservice:/var/www
-            - ./logs:/var/log
-        environment:
-            - SMTP_HOST=${SMTP_HOST}
-            - SMTP_PORT=${SMTP_PORT}
-        ports:
-            - ${GRPC_PORT}:9000
-        expose:
-            - 9000
-        networks:
-            unified:
-                ipv4_address: 10.5.0.5
-networks:
-    unified:
-        driver: bridge
-        name: unified
-        ipam:
-            config:
-                - subnet: 10.5.0.0/16
-                  gateway: 10.5.0.1
+  client-fpm:
+    # build:
+    #   context: ./client
+    image: webserver:latest
+    container_name: client-fpm
+    working_dir: /var/www/html
+    ports:
+      - "8080:80"
+    expose:
+      - 9000
+    volumes:
+      - ./client:/var/www/html
+      - ./shared:/var/www/shared
+      - ./localhost.conf:/etc/nginx/http.d/default.conf:ro
+
+  haproxy:
+    image: haproxy:3.5-dev4-alpine3.24
+    container_name: haproxy
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - server-rr
+  server-rr:
+    build:
+      context: ./server
+    container_name: server-rr
+    volumes:
+      - ./server:/var/www/html
+      - ./shared:/var/www/shared
+      - ./proto:/proto
+    command: "rr serve -c .rr.yaml"

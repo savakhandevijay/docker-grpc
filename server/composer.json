@@ -1,0 +1,20 @@
+{
+    "name": "demo/grpc-server",
+    "description": "gRPC server for the demo application",
+    "authors": [
+        {
+            "name": "Vijay Savakhande",
+            "email": "vsavakhande@webuy.com"
+        }
+    ],
+    "require": {
+        "spiral/roadrunner-grpc": "^3.6.0",
+        "google/protobuf": "^v5.35.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Demo\\": "../shared/Demo/",
+            "GPBMetadata\\": "../shared/GPBMetadata/"
+        }
+    }
+}

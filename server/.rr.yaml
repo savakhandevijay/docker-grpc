@@ -1,0 +1,9 @@
+version: "3"
+grpc:
+  listen: "tcp://0.0.0.0:9001"
+  proto: "/proto/user.proto"
+  pool:
+    debug: true
+server:
+  command: "php worker.php"
+  
