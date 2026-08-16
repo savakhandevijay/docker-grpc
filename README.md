@@ -41,7 +41,7 @@ To avoid local compiler installation issues (especially on ARM64/Apple Silicon),
 docker run --rm -v $(pwd):/app -w /app alpine:latest \
     sh -c "apk add --no-cache protobuf grpc-plugins && \
            protoc --php_out=./shared --grpc_out=./shared \
-           --plugin=protoc-gen-grpc=/usr/bin/grpc_php_plugin ./proto/user.proto"
+           --plugin=protoc-gen-grpc=/usr/bin/grpc_php_plugin \$(find ./proto -name '*.proto')""
 ```
 
 ### 3. Manually Create the RoadRunner Interface
