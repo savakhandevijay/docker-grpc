@@ -13,7 +13,8 @@ services:
       - ./client:/var/www/html
       - ./shared:/var/www/shared
       - ./localhost.conf:/etc/nginx/http.d/default.conf:ro
-
+      - ./logs/nginx:/var/log/nginx:rw
+      - ./logs/php84:/var/log/php84:rw
   haproxy:
     image: haproxy:3.5-dev4-alpine3.24
     container_name: haproxy
@@ -31,4 +32,5 @@ services:
       - ./server:/var/www/html
       - ./shared:/var/www/shared
       - ./proto:/proto
+      - ./logs/roadrunner:/var/log/roadrunner:rw
     command: "rr serve -c .rr.yaml"

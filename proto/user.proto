@@ -2,6 +2,10 @@ syntax = "proto3";
 
 package demo;
 
+// 1. Force the generated classes into the "Demo" namespace
+option php_namespace = "Demo";
+option php_metadata_namespace = "Demo\\Users\\Metadata";
+
 // The payload sent by FPM
 message UserRequest {
   int32 user_id = 1;

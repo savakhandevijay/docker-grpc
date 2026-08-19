@@ -1,9 +1,20 @@
 version: "3"
 grpc:
   listen: "tcp://0.0.0.0:9001"
-  proto: "/proto/user.proto"
+  proto: "/proto/*.proto"
   pool:
     debug: true
+
 server:
   command: "php worker.php"
+
+logs:
+  # Set the log level to panic | error | warn | info | debug
+  level: debug
+  # Output target: stderr | stdout | path to file
+  output: /var/log/roadrunner/error.log
+  # Format options: json | console
+  encoding: json
+  # Mode options: production | development | raw | none
+  mode: development
   

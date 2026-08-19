@@ -14,7 +14,8 @@
     "autoload": {
         "psr-4": {
             "Demo\\": "../shared/Demo/",
-            "GPBMetadata\\": "../shared/GPBMetadata/"
+            "GPBMetadata\\": "../shared/GPBMetadata/",
+            "Apps\\": "Services/"
         }
     }
 }

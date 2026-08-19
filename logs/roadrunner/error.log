@@ -1,0 +1,90 @@
+{"level":"INFO","ts":"2026-08-19T03:44:53+0000","logger":"grpc        ","msg":"grpc server was started","address":"tcp://0.0.0.0:9001"}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"worker is allocated","pid":14,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"INFO","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"DEBUG ARRAY: \nGoogle\\Protobuf\\RepeatedField Object\n(\n)\n\n"}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"sending stop request to the worker","pid":14}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"worker stopped","pid":14}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:45:10+0000","elapsed":73}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"worker is allocated","pid":16,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"sending stop request to the worker","pid":16}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"server      ","msg":"worker stopped","pid":16}
+{"level":"DEBUG","ts":"2026-08-19T03:45:10+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:45:10+0000","elapsed":33}
+{"level":"DEBUG","ts":"2026-08-19T03:47:47+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:47:47+0000","logger":"server      ","msg":"worker is allocated","pid":17,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"ERROR","ts":"2026-08-19T03:47:47+0000","logger":"grpc        ","msg":"method call was finished with error","error":"rpc error: code = Internal desc = sync_worker_receive_frame: SoftJobError: Call to undefined method Google\\Protobuf\\RepeatedField::toArray()","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:47:47+0000","elapsed":76}
+{"level":"DEBUG","ts":"2026-08-19T03:47:47+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:47:47+0000","logger":"server      ","msg":"worker is allocated","pid":18,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:47:47+0000","logger":"server      ","msg":"sending stop request to the worker","pid":18}
+{"level":"DEBUG","ts":"2026-08-19T03:47:47+0000","logger":"server      ","msg":"worker stopped","pid":18}
+{"level":"DEBUG","ts":"2026-08-19T03:47:47+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:47:47+0000","elapsed":40}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"server      ","msg":"worker is allocated","pid":19,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"server      ","msg":"sending stop request to the worker","pid":19}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"server      ","msg":"worker stopped","pid":19}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:52:53+0000","elapsed":90}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"server      ","msg":"worker is allocated","pid":20,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"server      ","msg":"sending stop request to the worker","pid":20}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"server      ","msg":"worker stopped","pid":20}
+{"level":"DEBUG","ts":"2026-08-19T03:52:53+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:52:53+0000","elapsed":38}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"server      ","msg":"worker is allocated","pid":22,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"server      ","msg":"sending stop request to the worker","pid":22}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"server      ","msg":"worker stopped","pid":22}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:52:55+0000","elapsed":66}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"server      ","msg":"worker is allocated","pid":23,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"server      ","msg":"sending stop request to the worker","pid":23}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"server      ","msg":"worker stopped","pid":23}
+{"level":"DEBUG","ts":"2026-08-19T03:52:55+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:52:55+0000","elapsed":31}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"server      ","msg":"worker is allocated","pid":24,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"server      ","msg":"sending stop request to the worker","pid":24}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"server      ","msg":"worker stopped","pid":24}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:53:06+0000","elapsed":53}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"server      ","msg":"worker is allocated","pid":25,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"server      ","msg":"sending stop request to the worker","pid":25}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"server      ","msg":"worker stopped","pid":25}
+{"level":"DEBUG","ts":"2026-08-19T03:53:06+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:53:06+0000","elapsed":38}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"server      ","msg":"worker is allocated","pid":26,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"server      ","msg":"sending stop request to the worker","pid":26}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"server      ","msg":"worker stopped","pid":26}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:53:10+0000","elapsed":38}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"server      ","msg":"worker is allocated","pid":27,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"server      ","msg":"sending stop request to the worker","pid":27}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"server      ","msg":"worker stopped","pid":27}
+{"level":"DEBUG","ts":"2026-08-19T03:53:10+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:53:10+0000","elapsed":35}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"server      ","msg":"worker is allocated","pid":28,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"server      ","msg":"sending stop request to the worker","pid":28}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"server      ","msg":"worker stopped","pid":28}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:53:11+0000","elapsed":61}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"server      ","msg":"worker is allocated","pid":29,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"server      ","msg":"sending stop request to the worker","pid":29}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"server      ","msg":"worker stopped","pid":29}
+{"level":"DEBUG","ts":"2026-08-19T03:53:11+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:53:11+0000","elapsed":39}
+{"level":"DEBUG","ts":"2026-08-19T03:53:15+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:15+0000","logger":"server      ","msg":"worker is allocated","pid":30,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:15+0000","logger":"server      ","msg":"sending stop request to the worker","pid":30}
+{"level":"DEBUG","ts":"2026-08-19T03:53:15+0000","logger":"server      ","msg":"worker stopped","pid":30}
+{"level":"DEBUG","ts":"2026-08-19T03:53:15+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:53:15+0000","elapsed":83}
+{"level":"DEBUG","ts":"2026-08-19T03:53:15+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:16+0000","logger":"server      ","msg":"worker is allocated","pid":31,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:16+0000","logger":"server      ","msg":"sending stop request to the worker","pid":31}
+{"level":"DEBUG","ts":"2026-08-19T03:53:16+0000","logger":"server      ","msg":"worker stopped","pid":31}
+{"level":"DEBUG","ts":"2026-08-19T03:53:16+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:53:15+0000","elapsed":51}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"server      ","msg":"worker is allocated","pid":32,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"server      ","msg":"sending stop request to the worker","pid":32}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"server      ","msg":"worker stopped","pid":32}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.OrderService/GetOrders","start":"2026-08-19T03:53:21+0000","elapsed":47}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"server      ","msg":"executing in debug mode, worker will be destroyed after response is received"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"server      ","msg":"worker is allocated","pid":33,"max_execs":1,"internal_event_name":"EventWorkerConstruct"}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"server      ","msg":"sending stop request to the worker","pid":33}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"server      ","msg":"worker stopped","pid":33}
+{"level":"DEBUG","ts":"2026-08-19T03:53:21+0000","logger":"grpc        ","msg":"method was called successfully","method":"/demo.UserService/GetUser","start":"2026-08-19T03:53:21+0000","elapsed":38}

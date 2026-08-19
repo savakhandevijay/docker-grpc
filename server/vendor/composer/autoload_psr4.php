@@ -26,4 +26,5 @@ return array(
     'GPBMetadata\\Google\\Api\\' => array($vendorDir . '/google/common-protos/metadata/Api'),
     'GPBMetadata\\' => array($baseDir . '/../shared/GPBMetadata'),
     'Demo\\' => array($baseDir . '/../shared/Demo'),
+    'Apps\\' => array($baseDir . '/Services'),
 );

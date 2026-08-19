@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package demo;
+
+// 1. Force the generated classes into the "Demo" namespace
+option php_namespace = "Demo";
+option php_metadata_namespace = "Demo\\Orders\\Metadata";
+
+import "google/protobuf/timestamp.proto";
+
+message WebordersRequest {
+    // This is a list of strings (JSON array equivalent: ["val1", "val2"])
+    repeated string weborders = 1;
+}
+
+message OrderdetailsResponse {
+    repeated Orders order_list = 1;
+}
+
+message Orders {
+    int32 webordernumber = 1;
+    int32 originalwebordernumber = 2;
+    bool isactive = 3;
+    google.protobuf.Timestamp orderdatetime = 4;
+    string paymentname = 5;
+}
+
+// The service definition
+service OrderService {
+    rpc GetOrders(WebordersRequest) returns (OrderdetailsResponse);
+}

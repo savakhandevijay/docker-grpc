@@ -41,7 +41,7 @@ class UserResponse extends \Google\Protobuf\Internal\Message
      * }
      */
     public function __construct($data = NULL) {
-        \GPBMetadata\Proto\User::initOnce();
+        \Demo\Users\Metadata\User::initOnce();
         parent::__construct($data);
     }
 

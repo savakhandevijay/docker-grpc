@@ -39,8 +39,8 @@ grpc-demo/
 To avoid local compiler installation issues (especially on ARM64/Apple Silicon), use a temporary Docker container to compile your .proto file:
 ```
 docker run --rm -v $(pwd):/app -w /app alpine:latest \
-    sh -c "apk add --no-cache protobuf grpc-plugins && \
-           protoc --php_out=./shared --grpc_out=./shared \
+    sh -c "apk add --no-cache protobuf protobuf-dev grpc-plugins && \
+           protoc -I. -I/usr/include --php_out=./shared --grpc_out=./shared \
            --plugin=protoc-gen-grpc=/usr/bin/grpc_php_plugin \$(find ./proto -name '*.proto')""
 ```
 
@@ -138,6 +138,16 @@ During the development of this stack, we encountered and solved several common D
 - What you learned: gRPC network transfers return HTTP 200 OK, but application-level outcomes are communicated using 16 canonical gRPC status codes (UNAUTHENTICATED, NOT_FOUND, INVALID_ARGUMENT, etc.).
 
 - Key Takeaway: Throwing explicit gRPC status exceptions allows heterogeneous client services (Go, Python, Java) to inspect errors seamlessly without parsing custom JSON error payloads.
+
+---
+
+## Protocol Buffer Documentation
+
+Refer the documentation [link](https://protobuf.dev/programming-guides/proto3/#scalar) for data type supports in proto file 
+- use protobuf-dev package in alpine image, this will help to download imports (protobuf libs) to well-know type dir ie. directly inside `/usr/include/google/protobuf/`
+- Because protoc evaluates imports relative to the include directory, your `--proto_path` must target `/usr/include` . Add both your local project directory (.) and the global system path to your compilation 
+
+- add `protoc -I. -I/usr/include` in your protoc command. This will help The compiler evaluates -I. first to find your order schema, then checks the second -I path to resolve `google/protobuf/timestamp.proto` successfully.
 
 ---
 
